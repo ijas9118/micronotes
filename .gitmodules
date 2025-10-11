@@ -1,3 +1,6 @@
 [submodule "services/auth-service"]
 	path = services/auth-service
 	url = https://github.com/ijas9118/micronotes-auth-service/
+[submodule "services/user-service"]
+	path = services/user-service
+	url = https://github.com/ijas9118/micronotes-user-service

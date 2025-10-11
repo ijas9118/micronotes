@@ -14,18 +14,51 @@ services:
     networks:
       - app-network
 
-  auth-service:
-    container_name: auth-service
-    image: auth-service-image
-    build: ./services/auth-service
+  mongo-db:
+    container_name: mongo-db
+    image: mongo
+    restart: always
     ports:
-      - "3001:3001"
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+    volumes:
+      - mongodb-data:/data/db
+    networks:
+      - app-network
+
+  # auth-service:
+  #   container_name: auth-service
+  #   image: auth-service-image
+  #   build: ./services/auth-service
+  #   ports:
+  #     - "3001:3001"
+  #   depends_on:
+  #     - postgres-db
+  #   env_file:
+  #     - ./services/auth-service/.env
+  #   healthcheck:
+  #     test: ["CMD", "curl", "-f", "http://localhost:3001/health"]
+  #     interval: 30s
+  #     timeout: 10s
+  #     retries: 3
+  #     start_period: 5s
+  #   networks:
+  #     - app-network
+
+  user-service:
+    container_name: user-service
+    image: user-service-image
+    build: ./services/user-service
+    ports:
+      - "3002:3002"
     depends_on:
-      - postgres-db
+      - mongo-db
     env_file:
-      - ./services/auth-service/.env
+      - ./services/user-service/.env
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3001/health"]
+      test: ["CMD", "curl", "-f", "http://localhost:3002/health"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -35,6 +68,7 @@ services:
 
 volumes:
   postgres-data:
+  mongodb-data:
 
 networks:
   app-network:

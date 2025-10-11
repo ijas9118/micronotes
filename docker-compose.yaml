@@ -1,0 +1,22 @@
+services:
+  postgres-db:
+    container_name: postgres-db
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: micronotes
+      POSTGRES_PASSWORD: cantremember
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./init-database.sql:/docker-entrypoint-initdb.d/init-database.sql
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
+
+volumes:
+  postgres-data:
+
+networks:
+  app-network:
+    driver: bridge

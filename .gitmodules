@@ -4,3 +4,6 @@
 [submodule "services/user-service"]
 	path = services/user-service
 	url = https://github.com/ijas9118/micronotes-user-service
+[submodule "services/notes-service"]
+	path = services/notes-service
+	url = https://github.com/ijas9118/micronotes-notes-service

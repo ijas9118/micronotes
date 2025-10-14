@@ -7,3 +7,6 @@
 [submodule "services/notes-service"]
 	path = services/notes-service
 	url = https://github.com/ijas9118/micronotes-notes-service
+[submodule "services/api-gateway"]
+	path = services/api-gateway
+	url = https://github.com/ijas9118/micronotes-api-gateway

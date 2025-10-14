@@ -40,6 +40,23 @@ services:
     networks:
       - app-network
 
+  api-gateway:
+    container_name: api-gateway
+    image: api-gateway-image
+    build: ./services/api-gateway
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./services/api-gateway/.env
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+    networks:
+      - app-network
+
   auth-service:
     container_name: auth-service
     image: auth-service-image

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-config
+  namespace: infra-services
+data:
+  init-database.sql: |
+    CREATE DATABASE micronotes_auth;
+    CREATE DATABASE micronotes_notes;
+    GRANT ALL PRIVILEGES ON DATABASE micronotes_auth TO micronotes;
+    GRANT ALL PRIVILEGES ON DATABASE micronotes_notes TO micronotes;

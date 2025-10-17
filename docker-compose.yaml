@@ -43,7 +43,9 @@ services:
   api-gateway:
     container_name: api-gateway
     image: api-gateway-image
-    build: ./services/api-gateway
+    build:
+      context: ./services/api-gateway
+      dockerfile: Dockerfile.dev
     ports:
       - "3000:3000"
     env_file:
@@ -60,7 +62,9 @@ services:
   auth-service:
     container_name: auth-service
     image: auth-service-image
-    build: ./services/auth-service
+    build:
+      context: ./services/auth-service
+      dockerfile: Dockerfile.dev
     ports:
       - "3001:3001"
     depends_on:
@@ -103,7 +107,9 @@ services:
   notes-service:
     container_name: notes-service
     image: notes-service-image
-    build: ./services/notes-service
+    build: 
+      context: ./services/notes-service
+      dockerfile: Dockerfile.dev
     ports:
       - "3003:3003"
     depends_on:

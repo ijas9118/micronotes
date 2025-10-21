@@ -7,3 +7,4 @@ data:
   NODE_ENV: "development"
   PORT: "3001"
   LOG_LEVEL: "debug"
+  SERVICE_NAME: "auth-service"

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo-db-service
+  namespace: infra-services
+spec:
+  ports:
+    - port: 27017
+      targetPort: 27017
+  clusterIP: None
+  selector:
+    app: mongo
+# mongo-db-service.infra-services.svc.cluster.local:5432
